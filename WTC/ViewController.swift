@@ -13,7 +13,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     static let summaryEntryCell = "EntrySummaryCell"
     
-    var entries: [Entry] = [] {
+    private var selectedEntryIndex: Int = 0
+    
+    private var entries: [Entry] = [] {
         didSet {
             self.tableView.reloadData()
         }
@@ -25,7 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.title = "Diego"
+        self.title = "WTC"
         
         setUpTableView()
         initFunctions()
@@ -62,7 +64,27 @@ extension ViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedEntryIndex = indexPath.row
+        self.performSegue(withIdentifier: "ShowDetail", sender: self)
         self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+}
+
+
+// MARK: - Navigation
+extension ViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            guard let detailNavigationController = segue.destination as? UINavigationController else { return }
+            guard let detailVC = detailNavigationController.viewControllers[0] as? DetailViewController else { return }
+            guard let result = retrievaDataWithIndex(index: selectedEntryIndex) else {
+                print("[ERROR] Retrieving item to pass to Detail")
+                return
+            }
+            detailVC.entry = result
+        }
     }
     
 }
@@ -88,6 +110,27 @@ extension ViewController {
         } catch let error as NSError {
             print("[ERROR] Could not fetch: \(error.localizedDescription)")
         }
+    }
+    
+    private func retrievaDataWithIndex(index: Int) -> Entry? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entry")
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            guard let resultEntries = result as? [Entry] else {
+                print("[ERROR] Could not convert fetched data into Entry")
+                return nil
+            }
+            return resultEntries[index]
+        } catch let error as NSError {
+            print("[ERROR] Could not fetch: \(error.localizedDescription)")
+        }
+        
+        return nil
     }
     
     private func addInitialData() {

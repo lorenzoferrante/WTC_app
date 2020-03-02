@@ -18,6 +18,7 @@
 		50918850240D996100E54D13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5091884E240D996100E54D13 /* LaunchScreen.storyboard */; };
 		5091885B240D996100E54D13 /* WTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5091885A240D996100E54D13 /* WTCTests.swift */; };
 		50918866240D996100E54D13 /* WTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50918865240D996100E54D13 /* WTCUITests.swift */; };
+		50D7ED36240DB15F00DADDC2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		50918861240D996100E54D13 /* WTCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WTCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50918865240D996100E54D13 /* WTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTCUITests.swift; sourceTree = "<group>"; };
 		50918867240D996100E54D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				50918840240D995D00E54D13 /* AppDelegate.swift */,
 				50918842240D995D00E54D13 /* SceneDelegate.swift */,
 				50918844240D995D00E54D13 /* ViewController.swift */,
+				50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */,
 				50918846240D995D00E54D13 /* Main.storyboard */,
 				5091884C240D996100E54D13 /* Assets.xcassets */,
 				5091884E240D996100E54D13 /* LaunchScreen.storyboard */,
@@ -288,6 +291,7 @@
 				50918845240D995D00E54D13 /* ViewController.swift in Sources */,
 				50918841240D995D00E54D13 /* AppDelegate.swift in Sources */,
 				5091884B240D995D00E54D13 /* WTC.xcdatamodeld in Sources */,
+				50D7ED36240DB15F00DADDC2 /* DetailViewController.swift in Sources */,
 				50918843240D995D00E54D13 /* SceneDelegate.swift in Sources */,
 				50156C74240DAAB400F4B8D3 /* EntrySummaryCell.swift in Sources */,
 			);
