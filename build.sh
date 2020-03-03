@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Step 1: Archive\n"
+echo "🍷 Step 1: Archive...\n"
 xcodebuild -workspace WTC.xcodeproj/project.xcworkspace \
             -scheme WTC \
             clean archive \
@@ -9,10 +9,23 @@ xcodebuild -workspace WTC.xcodeproj/project.xcworkspace \
             -archivePath WTC.xcarchive
 echo "✅ Step 1: Done\n\n"
 
-echo "Step 2: Create IPA\n"
+echo "🍷 Step 2: Create IPA...\n"
 xcodebuild -exportArchive \
-            -allowProvisioningUpdates \
             -archivePath WTC.xcarchive \
-            -exportOptionsPlist  WTC/exportOptionsAdHoc.plist \
-            -exportPath  WTC.ipa
+            -exportOptionsPlist  WTC/ExportOptions.plist \
+            -exportPath  WTC_APP
 echo "✅ Step 2: Done\n\n"
+
+echo "🍷 Step 3: Moving files to IPAServer...\n\n"
+rm /Users/lorenzoferrante/Documents/ipaserver/build/*.txt
+rm /Users/lorenzoferrante/Documents/ipaserver/build/*.plist
+rm /Users/lorenzoferrante/Documents/ipaserver/build/*.log
+rm /Users/lorenzoferrante/Documents/ipaserver/build/*.ipa
+
+mv WTC_APP/* /Users/lorenzoferrante/Documents/ipaserver/build/
+rm -rf WTC_APP
+echo "✅ Step 3: Done\n\n"
+
+cd /Users/lorenzoferrante/Documents/ipaserver/build/
+APP_NAME=$(ls *.ipa)
+echo "📲 App Name: $APP_NAME\n\n"
