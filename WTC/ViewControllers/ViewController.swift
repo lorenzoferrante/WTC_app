@@ -72,7 +72,7 @@ extension ViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     	if (entries.count == 0) {
-    		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     		
     		cell.textLabel!.text = "Nessun Dato. Aggiungi Qualcosa!"
     		
