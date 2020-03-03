@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.title = "WTC - Database"
+        self.title = "WTC"
         
         setUpTableView()
         initFunctions()
@@ -64,10 +64,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 extension ViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    	if (entries.count == 0) {
+    		return 1
+    	}
         return entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    	if (entries.count == 1) {
+    		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
+    		
+    		cell.textLabel.text = "Nessun Dato. Aggiungi Qualcosa!"
+    		
+    		return cell
+    	}
+    	
         let cell = tableView.dequeueReusableCell(withIdentifier: ViewController.summaryEntryCell, for: indexPath) as! EntrySummaryCell
         
         cell.name.text = entries[indexPath.row].name!
@@ -125,6 +136,7 @@ extension ViewController {
                 return
             }
             self.entries = resultEntries
+            
         } catch let error as NSError {
             print("[ERROR] Could not fetch: \(error.localizedDescription)")
         }
