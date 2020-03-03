@@ -9,11 +9,11 @@
 	<key>manifest</key>
 	<dict>
 		<key>appURL</key>
-		<string>https://21d0647d.ngrok.io/WTC.ipa</string>
+		<string>https://admin:admin@21d0647d.ngrok.io/build/WTC.ipa</string>
 		<key>displayImageURL</key>
-		<string>https://21d0647d.ngrok.io/WTC.png</string>
+		<string>https://admin:admin@21d0647d.ngrok.io/build/wtc57.png</string>
 		<key>fullSizeImageURL</key>
-		<string>https://21d0647d.ngrok.io/WTC.png</string>
+		<string>https://admin:admin@21d0647d.ngrok.io/build/wtc512.png</string>
 	</dict>
 	<key>method</key>
 	<string>development</string>
@@ -24,6 +24,6 @@
 	<key>teamID</key>
 	<string>XYA85FESD6</string>
 	<key>thinning</key>
-	<string>iPhone11,8</string>
+	<string>&lt;none&gt;</string>
 </dict>
 </plist>
