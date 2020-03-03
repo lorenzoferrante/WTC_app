@@ -22,6 +22,8 @@ rm /Users/lorenzoferrante/Documents/ipaserver/build/*.plist
 rm /Users/lorenzoferrante/Documents/ipaserver/build/*.log
 rm /Users/lorenzoferrante/Documents/ipaserver/build/*.ipa
 
+rm WTC.xcarchive
+
 mv WTC_APP/* /Users/lorenzoferrante/Documents/ipaserver/build/
 rm -rf WTC_APP
 echo "✅ Step 3: Done\n\n"
