@@ -25,7 +25,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
-            self.title = entry?.name ?? "Dettaglio Prodotto"
+            self.title = "Dettaglio Prodotto"
             
             setUpTableView()
             initFunctions()
@@ -54,7 +54,7 @@ extension DetailViewController {
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailViewController.detailCell, for: indexPath)
-            
+        
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = entry?.name
@@ -68,7 +68,7 @@ extension DetailViewController {
         case 4:
             cell.textLabel?.text = "Quantità: \(entry?.quantity ?? 0) disponibili"
         case 5:
-            cell.textLabel?.text = "Nessuna nota..."
+            cell.textLabel?.text = "Note: \(entry?.notes ?? "nessuna nota")"
         case 6:
             cell.textLabel?.text = "Vendibile"
         default:

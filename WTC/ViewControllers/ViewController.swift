@@ -21,7 +21,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    // Prova commit
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -37,11 +36,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "EntrySummaryCell", bundle: nil), forCellReuseIdentifier: ViewController.summaryEntryCell)
+        tableView.contentInset.top = 20.0
     }
     
     private func initFunctions() {
         //addInitialData()
+        setUpNotifications()
+        setUpNavigationBar()
         retrievaData()
+    }
+    
+    private func setUpNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updataDataInTableView), name: .needDataUpdate, object: nil)
+    }
+    
+    private func setUpNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddView))
+    }
+    
+    @objc private func showAddView() {
+        self.performSegue(withIdentifier: "ShowAdd", sender: self)
     }
 
 }
@@ -92,6 +106,10 @@ extension ViewController {
 
 // MARK: - CoreData
 extension ViewController {
+    
+    @objc private func updataDataInTableView() {
+        retrievaData()
+    }
     
     private func retrievaData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

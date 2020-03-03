@@ -18,6 +18,14 @@
 		50918850240D996100E54D13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5091884E240D996100E54D13 /* LaunchScreen.storyboard */; };
 		5091885B240D996100E54D13 /* WTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5091885A240D996100E54D13 /* WTCTests.swift */; };
 		50918866240D996100E54D13 /* WTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50918865240D996100E54D13 /* WTCUITests.swift */; };
+		50CC8834240E491200FB74A7 /* InsertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC8832240E491200FB74A7 /* InsertCell.swift */; };
+		50CC8835240E491200FB74A7 /* InsertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CC8833240E491200FB74A7 /* InsertCell.xib */; };
+		50CC8839240E4D7300FB74A7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC8838240E4D7300FB74A7 /* AddViewController.swift */; };
+		50CC883B240E51BA00FB74A7 /* FieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC883A240E51BA00FB74A7 /* FieldViewController.swift */; };
+		50CC883E240E552F00FB74A7 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC883C240E552F00FB74A7 /* FieldCell.swift */; };
+		50CC883F240E552F00FB74A7 /* FieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CC883D240E552F00FB74A7 /* FieldCell.xib */; };
+		50CC8842240E590E00FB74A7 /* EntryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC8841240E590E00FB74A7 /* EntryClass.swift */; };
+		50CC8844240E754900FB74A7 /* CustomNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC8843240E754900FB74A7 /* CustomNotifications.swift */; };
 		50D7ED36240DB15F00DADDC2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +64,14 @@
 		50918861240D996100E54D13 /* WTCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WTCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50918865240D996100E54D13 /* WTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTCUITests.swift; sourceTree = "<group>"; };
 		50918867240D996100E54D13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50CC8832240E491200FB74A7 /* InsertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertCell.swift; sourceTree = "<group>"; };
+		50CC8833240E491200FB74A7 /* InsertCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsertCell.xib; sourceTree = "<group>"; };
+		50CC8838240E4D7300FB74A7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		50CC883A240E51BA00FB74A7 /* FieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldViewController.swift; sourceTree = "<group>"; };
+		50CC883C240E552F00FB74A7 /* FieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCell.swift; sourceTree = "<group>"; };
+		50CC883D240E552F00FB74A7 /* FieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldCell.xib; sourceTree = "<group>"; };
+		50CC8841240E590E00FB74A7 /* EntryClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryClass.swift; sourceTree = "<group>"; };
+		50CC8843240E754900FB74A7 /* CustomNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifications.swift; sourceTree = "<group>"; };
 		50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,12 +132,12 @@
 		5091883F240D995D00E54D13 /* WTC */ = {
 			isa = PBXGroup;
 			children = (
+				50CC8845240E755000FB74A7 /* Utils */,
 				50918877240DA29900E54D13 /* CoreData */,
-				50156C76240DAABD00F4B8D3 /* EntrySummaryCell */,
+				50CC8837240E492300FB74A7 /* Cells */,
+				50CC8846240E756100FB74A7 /* ViewControllers */,
 				50918840240D995D00E54D13 /* AppDelegate.swift */,
 				50918842240D995D00E54D13 /* SceneDelegate.swift */,
-				50918844240D995D00E54D13 /* ViewController.swift */,
-				50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */,
 				50918846240D995D00E54D13 /* Main.storyboard */,
 				5091884C240D996100E54D13 /* Assets.xcassets */,
 				5091884E240D996100E54D13 /* LaunchScreen.storyboard */,
@@ -154,6 +170,54 @@
 				50918849240D995D00E54D13 /* WTC.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		50CC8836240E491700FB74A7 /* InsertCell */ = {
+			isa = PBXGroup;
+			children = (
+				50CC8832240E491200FB74A7 /* InsertCell.swift */,
+				50CC8833240E491200FB74A7 /* InsertCell.xib */,
+			);
+			path = InsertCell;
+			sourceTree = "<group>";
+		};
+		50CC8837240E492300FB74A7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				50156C76240DAABD00F4B8D3 /* EntrySummaryCell */,
+				50CC8836240E491700FB74A7 /* InsertCell */,
+				50CC8840240E553500FB74A7 /* FieldCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		50CC8840240E553500FB74A7 /* FieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				50CC883C240E552F00FB74A7 /* FieldCell.swift */,
+				50CC883D240E552F00FB74A7 /* FieldCell.xib */,
+			);
+			path = FieldCell;
+			sourceTree = "<group>";
+		};
+		50CC8845240E755000FB74A7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				50CC8843240E754900FB74A7 /* CustomNotifications.swift */,
+				50CC8841240E590E00FB74A7 /* EntryClass.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		50CC8846240E756100FB74A7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				50918844240D995D00E54D13 /* ViewController.swift */,
+				50CC883A240E51BA00FB74A7 /* FieldViewController.swift */,
+				50CC8838240E4D7300FB74A7 /* AddViewController.swift */,
+				50D7ED35240DB15F00DADDC2 /* DetailViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,9 +324,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50CC8835240E491200FB74A7 /* InsertCell.xib in Resources */,
 				50918850240D996100E54D13 /* LaunchScreen.storyboard in Resources */,
 				50156C75240DAAB400F4B8D3 /* EntrySummaryCell.xib in Resources */,
 				5091884D240D996100E54D13 /* Assets.xcassets in Resources */,
+				50CC883F240E552F00FB74A7 /* FieldCell.xib in Resources */,
 				50918848240D995D00E54D13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,10 +355,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				50918845240D995D00E54D13 /* ViewController.swift in Sources */,
+				50CC8834240E491200FB74A7 /* InsertCell.swift in Sources */,
+				50CC883B240E51BA00FB74A7 /* FieldViewController.swift in Sources */,
+				50CC8839240E4D7300FB74A7 /* AddViewController.swift in Sources */,
 				50918841240D995D00E54D13 /* AppDelegate.swift in Sources */,
+				50CC8844240E754900FB74A7 /* CustomNotifications.swift in Sources */,
 				5091884B240D995D00E54D13 /* WTC.xcdatamodeld in Sources */,
+				50CC8842240E590E00FB74A7 /* EntryClass.swift in Sources */,
 				50D7ED36240DB15F00DADDC2 /* DetailViewController.swift in Sources */,
 				50918843240D995D00E54D13 /* SceneDelegate.swift in Sources */,
+				50CC883E240E552F00FB74A7 /* FieldCell.swift in Sources */,
 				50156C74240DAAB400F4B8D3 /* EntrySummaryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
