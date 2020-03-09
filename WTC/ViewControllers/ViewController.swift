@@ -15,20 +15,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private var selectedEntryIndex: Int = 0
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     private var entries: [Entry] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
     
+    private var filteredEntries: [Entry] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    private var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "WTC"
-        
-        setUpTableView()
         initFunctions()
     }
     
@@ -39,8 +53,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.contentInset.top = 20.0
     }
     
+    private func setUpSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Ricerca prodotti"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
     private func initFunctions() {
         //addInitialData()
+        setUpTableView()
+        setUpSearchController()
         setUpNotifications()
         setUpNavigationBar()
         retrievaData()
@@ -66,7 +90,9 @@ extension ViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     	if (entries.count == 0) {
     		return 1
-    	}
+        } else if isFiltering {
+            return filteredEntries.count
+        }
         return entries.count
     }
     
@@ -74,16 +100,22 @@ extension ViewController {
     	if (entries.count == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     		
-    		cell.textLabel!.text = "Nessun Dato. Aggiungi Qualcosa!"
+    		cell.textLabel!.text = "Nessun Dato. Aggiungi Qualcosa!"    
     		
     		return cell
     	}
     	
         let cell = tableView.dequeueReusableCell(withIdentifier: ViewController.summaryEntryCell, for: indexPath) as! EntrySummaryCell
         
-        cell.name.text = entries[indexPath.row].name!
-        cell.desc.text = entries[indexPath.row].desc!
-        cell.quantity.text = "Quantità: \(entries[indexPath.row].quantity)"
+        var selectedDataSource: [Entry] = entries
+        
+        if isFiltering {
+            selectedDataSource = filteredEntries
+        }
+        
+        cell.name.text = selectedDataSource[indexPath.row].name!
+        cell.desc.text = selectedDataSource[indexPath.row].category!
+        cell.quantity.text = "Quantità: \(selectedDataSource[indexPath.row].quantity)"
         
         return cell
     }
@@ -104,11 +136,15 @@ extension ViewController {
         if segue.identifier == "ShowDetail" {
             guard let detailNavigationController = segue.destination as? UINavigationController else { return }
             guard let detailVC = detailNavigationController.viewControllers[0] as? DetailViewController else { return }
-            guard let result = retrievaDataWithIndex(index: selectedEntryIndex) else {
+            /*guard let result = retrievaDataWithIndex(index: selectedEntryIndex) else {
                 print("[ERROR] Retrieving item to pass to Detail")
                 return
+            }*/
+            if isFiltering {
+                detailVC.entry = filteredEntries[selectedEntryIndex]
+            } else {
+                detailVC.entry = entries[selectedEntryIndex]
             }
-            detailVC.entry = result
         }
     }
     
@@ -185,6 +221,25 @@ extension ViewController {
             print("[ERROR] Could not save: \(error.localizedDescription)")
         }
 
+    }
+    
+}
+
+
+extension ViewController: UISearchResultsUpdating {
+    
+    private func filterContentForSearchText(_ searchText: String, category: String? = nil) {
+        filteredEntries = entries.filter { (entry: Entry) -> Bool in
+            if let name = entry.name {
+                return name.lowercased().contains(searchText)
+            }
+            return false
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
     }
     
 }

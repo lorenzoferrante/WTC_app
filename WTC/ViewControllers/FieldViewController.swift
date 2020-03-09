@@ -8,12 +8,15 @@
 
 import UIKit
 
-class FieldViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FieldViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     static let fieldCell = "FieldCell"
+    static let categoryCell = "CategoryCell"
     
     var fieldName: String?
     var fieldValue: String?
+    
+    private let categories = ["Champagne", "Vino Bianco", "Vino Rosso", "Bollicine"]
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -28,6 +31,7 @@ class FieldViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "FieldCell", bundle: nil), forCellReuseIdentifier: FieldViewController.fieldCell)
+        tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: FieldViewController.categoryCell)
     }
     
     private func initFunctions() {
@@ -128,6 +132,17 @@ extension FieldViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let fieldName = fieldName {
+            if fieldName == "Categoria" {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: FieldViewController.categoryCell, for: indexPath) as! CategoryCell
+                cell.pickerView.delegate = self
+                cell.pickerView.dataSource = self
+                
+                return cell
+            }
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: FieldViewController.fieldCell, for: indexPath) as! FieldCell
         
         cell.textField.placeholder = "Inserisci \(fieldName ?? "campo")"
@@ -137,6 +152,17 @@ extension FieldViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let fieldname = fieldName {
+            if fieldname == "Categoria" {
+                return 150.0
+            }
+        }
+        
+        return 50.0
     }
     
 }
@@ -164,3 +190,24 @@ extension FieldViewController: UITextFieldDelegate {
     
 }
 
+
+// MARK: - PickerView
+extension FieldViewController {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+        
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        fieldValue = categories[row]
+    }
+    
+}

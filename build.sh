@@ -1,5 +1,7 @@
 #!/bin/sh
 
+security unlock-keychain
+
 echo "🍷 Step 1: Archive...\n"
 xcodebuild -workspace WTC.xcodeproj/project.xcworkspace \
             -scheme WTC \
