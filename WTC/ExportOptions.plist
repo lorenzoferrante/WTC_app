@@ -9,11 +9,11 @@
 	<key>manifest</key>
 	<dict>
 		<key>appURL</key>
-		<string>https://admin:admin@xcode.ngrok.io/build/WTC.ipa</string>
+		<string>https://xbuild.eu.ngrok.io/build/WTC.ipa</string>
 		<key>displayImageURL</key>
-		<string>https://admin:admin@xcode.ngrok.io/build/wtc57.png</string>
+		<string>https://xbuild.eu.ngrok.io/build/wtc57.png</string>
 		<key>fullSizeImageURL</key>
-		<string>https://admin:admin@xcode.ngrok.io/build/wtc512.png</string>
+		<string>https://xbuild.eu.ngrok.io/build/wtc512.png</string>
 	</dict>
 	<key>method</key>
 	<string>development</string>
